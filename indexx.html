@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2027 Calendar</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff; color: #4b2e2e; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #4b2e2e; margin-bottom: 20px; }
+    .calendar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1200px; margin: 0 auto; }
+    .month { border: 2px solid #a67c52; border-radius: 8px; background: #faf6f0; overflow: hidden; }
+    .month h2 { background: #5c4033; color: #fff; margin: 0; padding: 8px; font-size: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 6px; text-align: center; font-size: 13px; border: 1px solid #eee; }
+    th { background: #d2b48c; color: #3e2723; }
+    .holiday { background: #b07b57; color: #fff; cursor: pointer; }
+    .weeknum { background: #f0efe8; font-weight: bold; }
+   
+    .modal { display: none; position: fixed; z-index: 2000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+    .modal-content { background: #fff; padding: 18px; border-radius: 8px; max-width: 480px; width: 90%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); color:#3e2c23; }
+    .modal-content img { width: 100%; border-radius: 6px; margin-top: 10px; }
+    .close-btn { float: right; cursor: pointer; color: #5c4033; font-weight: bold; font-size: 18px; }
+    @media (max-width: 900px) {
+      .calendar { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .calendar { grid-template-columns: repeat(1, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <h1>2027 Calendar</h1>
+  <div class="calendar">
+    
+    <div class="month">
+      <h2>January</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">53</td><td></td><td></td><td></td><td></td><td></td><td class="holiday" onclick="openModal('newyear')">1</td><td>2</td></tr>
+        <tr><td class="weeknum">1</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+        <tr><td class="weeknum">2</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+        <tr><td class="weeknum">3</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+        <tr><td class="weeknum">4</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+        <tr><td class="weeknum">5</td><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+    </div>
+
+    <div class="month">
+      <h2>February</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">5</td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><td class="weeknum">6</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><td class="weeknum">7</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+        <tr><td class="weeknum">8</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+        <tr><td class="weeknum">9</td><td>27</td><td>28</td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+    </div>
+    
+    <div class="month">
+      <h2>March</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">9</td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><td class="weeknum">10</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><td class="weeknum">11</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+        <tr><td class="weeknum">12</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td class="holiday" onclick="openModal('maundy')">25</td><td class="holiday" onclick="openModal('goodfriday')">26</td></tr>
+        <tr><td class="weeknum">13</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
+      </table>
+    </div>
+
+    <div class="month">
+      <h2>April</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">13</td><td></td><td></td><td></td><td></td><td class="weeknum">1</td><td class="weeknum">2</td><td class="weeknum">3</td></tr>
+        <tr><td class="weeknum">14</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td class="holiday" onclick="openModal('araw')">9</td><td>10</td></tr>
+        <tr><td class="weeknum">15</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+        <tr><td class="weeknum">16</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+        <tr><td class="weeknum">17</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td></tr>
+      </table>
+    </div>
+    
+    <div class="month">
+      <h2>May</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">18</td><td class="holiday" onclick="openModal('labor')">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+        <tr><td class="weeknum">19</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+        <tr><td class="weeknum">20</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+        <tr><td class="weeknum">21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+        <tr><td class="weeknum">22</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
+      </table>
+    </div>
+
+    <div class="month">
+      <h2>June</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">22</td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><td class="weeknum">23</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="holiday" onclick="openModal('independence')">12</td></tr>
+        <tr><td class="weeknum">24</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+        <tr><td class="weeknum">25</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+        <tr><td class="weeknum">26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td></tr>
+      </table>
+    </div>
+    
+    <div class="month">
+      <h2>July</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">26</td><td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td></tr>
+        <tr><td class="weeknum">27</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+        <tr><td class="weeknum">28</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+        <tr><td class="weeknum">29</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+        <tr><td class="weeknum">30</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+      </table>
+    </div>
+
+    <div class="month">
+      <h2>August</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">31</td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+        <tr><td class="weeknum">32</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+        <tr><td class="weeknum">33</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+        <tr><td class="weeknum">34</td><td>21</td><td>22</td><td>23</td><td>24</td><td class="holiday" onclick="openModal('heroes')">25</td><td>26</td><td>27</td></tr>
+        <tr><td class="weeknum">35</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td></tr>
+      </table>
+    </div>
+    
+    <div class="month">
+      <h2>September</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">35</td><td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td></tr>
+        <tr><td class="weeknum">36</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+        <tr><td class="weeknum">37</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+        <tr><td class="weeknum">38</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+        <tr><td class="weeknum">39</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td></tr>
+      </table>
+    </div>
+    
+    <div class="month">
+      <h2>October</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">39</td><td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td></tr>
+        <tr><td class="weeknum">40</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+        <tr><td class="weeknum">41</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+        <tr><td class="weeknum">42</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+        <tr><td class="weeknum">43</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+      </table>
+    </div>
+
+    <div class="month">
+      <h2>November</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">43</td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+        <tr><td class="weeknum">44</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+        <tr><td class="weeknum">45</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+        <tr><td class="weeknum">46</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+        <tr><td class="weeknum">47</td><td>28</td><td>29</td><td class="holiday" onclick="openModal('bonifacio')">30</td><td></td><td></td><td></td><td></td></tr>
+      </table>
+    </div>
+
+    <div class="month">
+      <h2>December</h2>
+      <table>
+        <tr><th>Wk</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+        <tr><td class="weeknum">48</td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><td class="weeknum">49</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><td class="weeknum">50</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+        <tr><td class="weeknum">51</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td class="holiday" onclick="openModal('christmas')">25</td><td>26</td></tr>
+        <tr><td class="weeknum">52</td><td>27</td><td>28</td><td>29</td><td class="holiday" onclick="openModal('rizal')">30</td><td>31</td><td></td><td></td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div id="newyear" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('newyear')">&times;</span><h2>New Year's Day</h2><p>January 1, 2027 — New Year's Day.</p><img src="newyear.png" alt="New Year"></div></div>
+
+  <div id="maundy" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('maundy')">&times;</span><h2>Maundy Thursday</h2><p>March 25, 2027 — Maundy Thursday (Holy Week).</p><img src="maundy.jpg" alt="Maundy Thursday"></div></div>
+
+  <div id="goodfriday" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('goodfriday')">&times;</span><h2>Good Friday</h2><p>March 26, 2027 — Good Friday (Holy Week).</p><img src="goodfriday.jpg" alt="Good Friday"></div></div>
+
+  <div id="araw" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('araw')">&times;</span><h2>Araw ng Kagitingan</h2><p>April 9, 2027 — Day of Valor (Araw ng Kagitingan).</p><img src="araw.jpg" alt="Araw ng Kagitingan"></div></div>
+
+  <div id="labor" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('labor')">&times;</span><h2>Labor Day</h2><p>May 1, 2027 — Labor Day.</p><img src="labor.jpg" alt="Labor Day"></div></div>
+
+  <div id="independence" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('independence')">&times;</span><h2>Independence Day</h2><p>June 12, 2027 — Independence Day.</p><img src="independence.jpg" alt="Independence Day"></div></div>
+
+  <div id="heroes" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('heroes')">&times;</span><h2>National Heroes Day</h2><p>August 30, 2027 — National Heroes Day (last Monday of August).</p><img src="heroes.jpg" alt="National Heroes Day"></div></div>
+
+  <div id="bonifacio" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('bonifacio')">&times;</span><h2>Bonifacio Day</h2><p>November 30, 2027 — Bonifacio Day.</p><img src="bonifacio.jpg" alt="Bonifacio Day"></div></div>
+
+  <div id="christmas" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('christmas')">&times;</span><h2>Christmas Day</h2><p>December 25, 2027 — Christmas Day.</p><img src="christmas.jpg" alt="Christmas"></div></div>
+
+  <div id="rizal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeModal('rizal')">&times;</span><h2>Rizal Day</h2><p>December 30, 2027 — Rizal Day.</p><img src="rizal.jpg" alt="Rizal Day"></div></div>
+
+  <script>
+    function openModal(id){ document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id){ document.getElementById(id).style.display = 'none'; }
+    window.addEventListener('click', function(e){
+      if(e.target.classList && e.target.classList.contains('modal')) { e.target.style.display = 'none'; }
+    });
+    document.querySelectorAll('.modal').forEach(m => { m.style.display = 'none'; m.style.alignItems = 'center'; m.style.justifyContent = 'center'; });
+  </script>
+</body>
+</html>
